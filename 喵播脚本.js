@@ -9,7 +9,7 @@
 // ==/UserScript==
 (function() {
     // 随机发送的弹幕，可自行新增修改
-    var danmuList = new Array("*召唤顺毛", "*命运之饭白嫖", "*命运之饭白嫖啊", "*命运之饭白嫖", "*命运之饭白嫖啊", "*命运之饭白嫖"); 
+    var danmuList = new Array("*召唤顺毛", "*命运之饭白嫖", "*命运之饭白嫖1", "*命运之饭白嫖2", "*命运之饭白嫖3", "*命运之饭白嫖4"); 
     
     var  bp_siv = 0; // 自动白嫖
     var  dm_siv = 0; // 弹幕定时接收值，用来控制定时开或关
@@ -69,7 +69,7 @@
             if (bpNum < 5) {
                 bpNum++;
                 clearInterval(bp_siv);
-                bp_siv = setInterval(bp_send, 3000);
+                bp_siv = setInterval(bp_send, 4000);
             } else {
                 bpNum = 0;
                 clearInterval(bp_siv);
@@ -97,7 +97,7 @@
         if(old_switch=="1"){ // 由开到关
             $("#bp_switch").removeClass("current");
             $("#bp_switch>a").attr("data", "0");
-            clearInterval(dm_siv);
+            clearInterval(bp_siv);
         }
         else{
             $("#bp_switch").addClass("current");
