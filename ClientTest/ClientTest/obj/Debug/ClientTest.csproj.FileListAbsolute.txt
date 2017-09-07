@@ -1,0 +1,6 @@
+C:\Users\dongyongping\source\repos\ClientTest\ClientTest\bin\Debug\ClientTest.exe.config
+C:\Users\dongyongping\source\repos\ClientTest\ClientTest\bin\Debug\ClientTest.exe
+C:\Users\dongyongping\source\repos\ClientTest\ClientTest\bin\Debug\ClientTest.pdb
+C:\Users\dongyongping\source\repos\ClientTest\ClientTest\obj\Debug\ClientTest.csproj.CoreCompileInputs.cache
+C:\Users\dongyongping\source\repos\ClientTest\ClientTest\obj\Debug\ClientTest.exe
+C:\Users\dongyongping\source\repos\ClientTest\ClientTest\obj\Debug\ClientTest.pdb

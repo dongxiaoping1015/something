@@ -1,0 +1,7 @@
+c:\users\dongyongping\source\repos\ServerTest\ServerTest\bin\Debug\ServerTest.exe.config
+c:\users\dongyongping\source\repos\ServerTest\ServerTest\bin\Debug\ServerTest.exe
+c:\users\dongyongping\source\repos\ServerTest\ServerTest\bin\Debug\ServerTest.pdb
+c:\users\dongyongping\source\repos\ServerTest\ServerTest\obj\Debug\ServerTest.csprojResolveAssemblyReference.cache
+c:\users\dongyongping\source\repos\ServerTest\ServerTest\obj\Debug\ServerTest.csproj.CoreCompileInputs.cache
+c:\users\dongyongping\source\repos\ServerTest\ServerTest\obj\Debug\ServerTest.exe
+c:\users\dongyongping\source\repos\ServerTest\ServerTest\obj\Debug\ServerTest.pdb
