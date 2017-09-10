@@ -1,0 +1,6 @@
+Z:\Mac 上的 dong\Projects\something\SimpleExplore\Demo\bin\Debug\Demo.dll
+Z:\Mac 上的 dong\Projects\something\SimpleExplore\Demo\bin\Debug\Demo.pdb
+Z:\Mac 上的 dong\Projects\something\SimpleExplore\Demo\obj\Debug\Demo.csprojResolveAssemblyReference.cache
+Z:\Mac 上的 dong\Projects\something\SimpleExplore\Demo\obj\Debug\Demo.csproj.CoreCompileInputs.cache
+Z:\Mac 上的 dong\Projects\something\SimpleExplore\Demo\obj\Debug\Demo.dll
+Z:\Mac 上的 dong\Projects\something\SimpleExplore\Demo\obj\Debug\Demo.pdb
