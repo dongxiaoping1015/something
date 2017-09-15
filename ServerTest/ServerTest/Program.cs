@@ -13,14 +13,16 @@ namespace ServerTest
         static void Main(string[] args)
         {
             Console.WriteLine("Server is running ... ");
-            IPAddress ip = new IPAddress(new byte[] { 172, 16, 203, 103 });
+            IPAddress ip = new IPAddress(new byte[] { 192, 168, 1, 91 });
             TcpListener listener = new TcpListener(ip, 8500);
             listener.Start();
             Console.WriteLine("Start Listening ... ");
             while (true)
             {
                 TcpClient client = listener.AcceptTcpClient();
+                //Server wapper = new Server(client);
                 Server wapper = new Server(client);
+                wapper.BeginRead();
             }
             //const int BufferSize = 8192;
             //Console.WriteLine("Server is running ... ");

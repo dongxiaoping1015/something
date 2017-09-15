@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,15 +15,30 @@ namespace ClientTest
     {
         static void Main(string[] args)
         {
-            ConsoleKey key;
-            Client c = new Client();
-            c.SendMessage("Hello, readers.Thanks for reading!");
-            Console.WriteLine(@"\n\n输入'Q'退出");
-            do
+            Type t = typeof(BookingStatus);
+            FieldInfo[] fieldArray = t.GetFields();
+            foreach (FieldInfo field in fieldArray)
             {
-                key = Console.ReadKey(true).Key;
+                if (!field.IsSpecialName)
+                {
+                    Console.WriteLine($"Name: {field.Name}, Value: {field.GetRawConstantValue()}");
+                }
             }
-            while (key != ConsoleKey.Q);
+            Console.ReadLine();
+            //ConsoleKey key;
+            //Client c = new Client();
+            //string filePath = Environment.CurrentDirectory + "/" + "Client01.jpg";
+            //if (File.Exists(filePath))
+            //{
+            //    c.BeginSendFile(filePath);
+            //}
+            //c.SendMessage("Hello, readers.Thanks for reading!");
+            //Console.WriteLine(@"\n\n输入'Q'退出");
+            //do
+            //{
+            //    key = Console.ReadKey(true).Key;
+            //}
+            //while (key != ConsoleKey.Q);
             //Console.WriteLine("Client is running ... ");
             //TcpClient client;
             //const int BufferSize = 8192;
@@ -84,5 +102,12 @@ namespace ClientTest
             //}
             //while (key != ConsoleKey.Q);
         }
+    }
+    public enum BookingStatus
+    {
+        未提交 = 1,
+        已提交,
+        已取消,
+        已订妥 = 6
     }
 }

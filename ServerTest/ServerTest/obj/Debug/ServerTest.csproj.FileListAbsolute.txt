@@ -5,3 +5,10 @@ c:\users\dongyongping\source\repos\ServerTest\ServerTest\obj\Debug\ServerTest.cs
 c:\users\dongyongping\source\repos\ServerTest\ServerTest\obj\Debug\ServerTest.csproj.CoreCompileInputs.cache
 c:\users\dongyongping\source\repos\ServerTest\ServerTest\obj\Debug\ServerTest.exe
 c:\users\dongyongping\source\repos\ServerTest\ServerTest\obj\Debug\ServerTest.pdb
+D:\something\ServerTest\ServerTest\obj\Debug\ServerTest.csprojResolveAssemblyReference.cache
+D:\something\ServerTest\ServerTest\obj\Debug\ServerTest.csproj.CoreCompileInputs.cache
+D:\something\ServerTest\ServerTest\obj\Debug\ServerTest.exe
+D:\something\ServerTest\ServerTest\obj\Debug\ServerTest.pdb
+D:\something\ServerTest\ServerTest\bin\Debug\ServerTest.exe.config
+D:\something\ServerTest\ServerTest\bin\Debug\ServerTest.exe
+D:\something\ServerTest\ServerTest\bin\Debug\ServerTest.pdb
