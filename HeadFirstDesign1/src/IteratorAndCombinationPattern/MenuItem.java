@@ -1,6 +1,8 @@
 package IteratorAndCombinationPattern;
 
-public class MenuItem {
+import java.awt.Menu;
+
+public class MenuItem extends MenuComponent {
     String name;
     String description;
     boolean vegetarian;

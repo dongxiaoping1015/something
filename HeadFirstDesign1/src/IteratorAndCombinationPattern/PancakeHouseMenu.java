@@ -1,8 +1,9 @@
 package IteratorAndCombinationPattern;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class PancakeHouseMenu {
+public class PancakeHouseMenu implements Menu {
     ArrayList menuItems;
 
     public PancakeHouseMenu() {
@@ -12,7 +13,18 @@ public class PancakeHouseMenu {
                 "Pancakes with scrambled eggs, and toast",
                 true,
                 2.99);
-        addItem("Regular Pancake Breakfast");
+        addItem("Regular Pancake Breakfast",
+                "Pancakes with fried eggs, sausage",
+                false,
+                2.99);
+        addItem("Blueberry Pancakes",
+                "Pancakes made with fresh blueberries",
+                true,
+                3.49);
+        addItem("Waffles",
+                "Waffkes, with your choice of blueberries or strawberries",
+                true,
+                3.59);
     }
 
     public void addItem(String name, String description,
@@ -21,7 +33,11 @@ public class PancakeHouseMenu {
         menuItems.add(menuItem);
     }
 
-    public ArrayList getMenuItems() {
-        return menuItems;
-    }
+//    public ArrayList getMenuItems() {
+//        return menuItems;
+//    }
+public Iterator createIterator() {
+    //return new PancakeHouseIterator(menuItems);
+    return menuItems.iterator();
+}
 }
