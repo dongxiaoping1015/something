@@ -1,0 +1,7 @@
+D:\something\Thead\Thead\bin\Debug\Thead.exe.config
+D:\something\Thead\Thead\bin\Debug\Thead.exe
+D:\something\Thead\Thead\bin\Debug\Thead.pdb
+D:\something\Thead\Thead\obj\Debug\Thead.csprojResolveAssemblyReference.cache
+D:\something\Thead\Thead\obj\Debug\Thead.csproj.CoreCompileInputs.cache
+D:\something\Thead\Thead\obj\Debug\Thead.exe
+D:\something\Thead\Thead\obj\Debug\Thead.pdb

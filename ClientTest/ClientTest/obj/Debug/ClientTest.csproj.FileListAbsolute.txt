@@ -4,3 +4,10 @@ C:\Users\dongyongping\source\repos\ClientTest\ClientTest\bin\Debug\ClientTest.pd
 C:\Users\dongyongping\source\repos\ClientTest\ClientTest\obj\Debug\ClientTest.csproj.CoreCompileInputs.cache
 C:\Users\dongyongping\source\repos\ClientTest\ClientTest\obj\Debug\ClientTest.exe
 C:\Users\dongyongping\source\repos\ClientTest\ClientTest\obj\Debug\ClientTest.pdb
+D:\something\ClientTest\ClientTest\bin\Debug\ClientTest.exe.config
+D:\something\ClientTest\ClientTest\bin\Debug\ClientTest.exe
+D:\something\ClientTest\ClientTest\bin\Debug\ClientTest.pdb
+D:\something\ClientTest\ClientTest\obj\Debug\ClientTest.csproj.CoreCompileInputs.cache
+D:\something\ClientTest\ClientTest\obj\Debug\ClientTest.exe
+D:\something\ClientTest\ClientTest\obj\Debug\ClientTest.pdb
+D:\something\ClientTest\ClientTest\obj\Debug\ClientTest.csprojResolveAssemblyReference.cache
