@@ -25,7 +25,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
     'scrapytest2.rotate_useragent.RotateUserAgentMiddleware' :400,
     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-    'scrapytest2.middlewares.ProxyMiddleware': 100,
+    #'scrapytest2.middlewares.ProxyMiddleware': 100,
     #项目名.(包名).文件名.类名:权重值
 }
 user_agent_list = [
@@ -62,10 +62,10 @@ DOWNLOAD_DELAY = 2
 # Disable cookies (enabled by default)
 COOKIES_ENABLED = False
 # start MySQL database configure setting
-MYSQL_HOST = 'localhost'
-MYSQL_DBNAME = 'scrapydb'
-MYSQL_USER = 'root'
-MYSQL_PASSWD = 'yesyes'
+# MYSQL_HOST = 'localhost'
+# MYSQL_DBNAME = 'scrapydb'
+# MYSQL_USER = 'root'
+# MYSQL_PASSWD = 'root'
 # end of MySQL database configure setting
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -98,8 +98,9 @@ MYSQL_PASSWD = 'yesyes'
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     #'scrapytest2.pipelines.MySQLStoreCnblogsPipeline': 300,
+    'scrapytest2.pipelines.JsonWriterPipeline': 350,
     'scrapytest2.pipelines.Scrapytest2Pipeline': 300,
-    'scrapy.contrib.pipeline.images.ImagesPipeline': 1,
+    #'scrapy.contrib.pipeline.images.ImagesPipeline': 1,
 }
 import os
 project_dir=os.path.abspath(os.path.dirname(__file__))  #获取当前爬虫项目的绝对路径

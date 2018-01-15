@@ -17,6 +17,27 @@ class Scrapytest2Pipeline(object):
     def process_item(self, item, spider):
         return item
 
+class JsonWriterPipeline(object):
+    def __init__(self):
+        self.filename = open("ZPposition.json", "wb")
+
+    def process_item(self, item, spider):
+        jsontext = json.dumps(dict(item), ensure_ascii=False) + ",\n"
+        self.filename.write(jsontext.encode("utf-8"))
+        return item
+
+    def close_spider(self, spider):
+        self.filename.close()
+    # def open_spider(self, spider):
+    #     self.file = open('ZPposition.jl', 'wb')
+    #
+    # def close_spider(self, spider):
+    #     self.file.close()
+    #
+    # def process_item(self, item, spider):
+    #     line = json.dumps(dict(item)) + "\n"
+    #     self.file.write(line)
+    #     return item
 
 class MySQLStoreCnblogsPipeline(object):
     def __init__(self, dbpool):

@@ -29,10 +29,10 @@ class bookSpider(CrawlSpider):
         book = BookItem()
         book['url'] = response.url
         book['bookname'] = response.xpath("id('wrapper')/h1/span/text()").extract()[0]
-        book['bookrate'] = response.xpath("id('interest_sectl')//strong/text()").extract()[0]
-        book['ratepeople'] = response.xpath("id('interest_sectl')/div/div[2]/div/div[2]/span/a/span/text()").extract()[0]
-        book['author'] = response.xpath('id("info")/span[1]/a/text()').extract()[0]
-        book['image_urls'] = response.xpath('id("mainpic")//img/@src').extract()
+        # book['bookrate'] = response.xpath("id('interest_sectl')//strong/text()").extract()[0]
+        # book['ratepeople'] = response.xpath("id('interest_sectl')/div/div[2]/div/div[2]/span/a/span/text()").extract()[0]
+        # book['author'] = response.xpath('id("info")/span[1]/a/text()').extract()[0]
+        # book['image_urls'] = response.xpath('id("mainpic")//img/@src').extract()
         yield book
         # if self.URL >= 5:
         #     sys.exit()
