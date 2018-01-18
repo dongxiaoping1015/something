@@ -34,47 +34,67 @@ function getCurrentTabUrl(callback) {
       callback(url);
     });
 }
+// 从cookies获取ssid
 function getSSID(callback) {
-    chrome.cookies.get({"url": "http://127.0.0.1:5000", "name": "sommmmmmm"}, (cookie) => {
+    chrome.cookies.get({"url": "http://127.0.0.1:5000", "name": "ssid"}, (cookie) => {
         if (cookie == null) {
-            
             callback(null);
+        } else {
+            callback(cookie.value)
         }
-        callback(cookie.value)
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     getSSID((ssid) => {
+        // 如果ssid存在 表示已登录
         if (ssid != null) {
-        var record_auto = document.getElementById("record_auto");
-        record_auto.addEventListener('click', () => {
-            chrome.cookies.set({"url": "http://127.0.0.1:5000", "name": "sommmmmmm", "value": "aaaaaaa"});
-        });
-        var record_t = document.getElementById("record_t");
-        record_t.addEventListener('click', () => {
-            chrome.cookies.get({"url": "http://127.0.0.1:5000", "name": "sommmmmmm"}, (cookie) => {
-                alert(cookie.value);
-            });
-        });
-        getCurrentTabUrl((url) => {
-            var record_now = document.getElementById("record_now");
-            record_now.addEventListener('click', () => {
-                var xhr = new XMLHttpRequest();
-                //xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.
-                //ssid(登陆后)/收藏夹ID/URL/
-                xhr.open("POST", "http://127.0.0.1:5000/add?a="+url+"&b="+ssid+"&c=3", true);
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4) {
-                      // 警告! 这样处理有可能被注入恶意脚本!
-                      alert(xhr.responseText);
+            document.getElementById("record").style.display="block";
+            document.getElementById("logOut").style.display="block";
+            getCurrentTabUrl((url) => {
+                var record_now = document.getElementById("record_now");
+                record_now.addEventListener('click', () => {
+                    var xhr = new XMLHttpRequest();
+                    //xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.
+                    //ssid(登陆后)/收藏夹ID/URL/
+                    xhr.open("POST", "http://127.0.0.1:5000/add?a="+url+"&b="+ssid+"&c=3", true);
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState == 4) {
+                        // 警告! 这样处理有可能被注入恶意脚本!
+                        alert(xhr.responseText);
+                        }
                     }
-                  }
-                xhr.send();
+                    xhr.send();
+                });
             });
-        })
+            var record_auto = document.getElementById("record_auto");
+            record_auto.addEventListener('click', () => {
+                
+            });
+            var record_t = document.getElementById("record_t");
+            record_t.addEventListener('click', () => {
+                
+            });
     } else {
+        // ssid不存在 需要登录
         document.getElementById("logIn").style.display="block";
+        var login = document.getElementById("login");
+        login.addEventListener('click', () => {
+            var xhr = new XMLHttpRequest();
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            xhr.open("POST", "http://127.0.0.1:5000/login?username="+username+"&password="+password, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.responseText != null) {
+                    // 登陆成功 在cookies中设置ssid
+                    chrome.cookies.set({"url": "http://127.0.0.1:5000", "name": "ssid", "value": xhr.responseText});
+                    document.getElementById("logIn").style.display="none";
+                    document.getElementById("record").style.display="block";
+                    document.getElementById("logOut").style.display="block";
+                }
+            }
+            xhr.send();
+        })
         //$("#logIn").show();
     }
     });

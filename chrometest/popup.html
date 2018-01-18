@@ -7,17 +7,18 @@
   </head>
   <body>
     <div id="logIn" style="display:none;">
-      用户名:<input type="text" />
+      用户名:<input type="text" id="username" />
+      密码:<input type="text" id="password" />
       <button id="login">log in</button>
     </div>
-    <div id="record">
+    <div id="record" style="display:none;">
       <h1>GTmetrix Analyzer</h1>
       <button id="record_now">记录当前页</button>
       <button id="record_auto">自动记录</button>
       <button id="record_t">aaaaa</button>
     </div>
     <div id="logOut" style="display:none;">
-      <a href="javascript:;">log out</a>
+      <button id="logout">log out</button>
     </div>
   </body>
   <script src="popup.js"></script>
