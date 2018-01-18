@@ -11,6 +11,9 @@
      "default_popup": "popup.html"
     },
     "permissions": [
-     "http://*/"
+      "activeTab",
+      "storage",
+      "cookies",
+      "http://*/"
      ]
   }
