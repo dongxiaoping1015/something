@@ -5,7 +5,7 @@
  * @param {function(string)} callback called when the URL of the current tab
  *   is found.
  */
-function getCurrentTabUrl(callback) {
+function getCurrentTab(callback) {
     // Query filter to be passed to chrome.tabs.query - see
     // https://developer.chrome.com/extensions/tabs#method-query
     var queryInfo = {
@@ -20,18 +20,17 @@ function getCurrentTabUrl(callback) {
       // A window can only have one active tab at a time, so the array consists of
       // exactly one tab.
       var tab = tabs[0];
-  
       // A tab is a plain object that provides information about the tab.
       // See https://developer.chrome.com/extensions/tabs#type-Tab
-      var url = tab.url;
-  
+      //var url = tab.url;
+
       // tab.url is only available if the "activeTab" permission is declared.
       // If you want to see the URL of other tabs (e.g. after removing active:true
       // from |queryInfo|), then the "tabs" permission is required to see their
       // "url" properties.
-      console.assert(typeof url == 'string', 'tab.url should be a string');
+      //console.assert(typeof url == 'string', 'tab.url should be a string');
   
-      callback(url);
+      callback(tab);
     });
 }
 // 从cookies获取ssid
@@ -44,36 +43,66 @@ function getSSID(callback) {
         }
     });
 }
-
+function getUserInfo(ssid, callback) {
+    var xhr = new XMLHttpRequest();
+    //xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.
+    //ssid(登陆后)/收藏夹ID/URL/
+    var title = document.getElementById("title").value;
+    console.log(title)
+    xhr.open("GET", "http://127.0.0.1:5000/user?ssid="+ssid, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4) {
+        // 警告! 这样处理有可能被注入恶意脚本!
+            callback(xhr.responseText);
+        }
+    }
+    xhr.send();
+}
 document.addEventListener('DOMContentLoaded', () => {
     getSSID((ssid) => {
         // 如果ssid存在 表示已登录
         if (ssid != null) {
-            document.getElementById("record").style.display="block";
-            document.getElementById("logOut").style.display="block";
-            getCurrentTabUrl((url) => {
-                var record_now = document.getElementById("record_now");
-                record_now.addEventListener('click', () => {
-                    var xhr = new XMLHttpRequest();
-                    //xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.
-                    //ssid(登陆后)/收藏夹ID/URL/
-                    xhr.open("POST", "http://127.0.0.1:5000/add?a="+url+"&b="+ssid+"&c=3", true);
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState == 4) {
-                        // 警告! 这样处理有可能被注入恶意脚本!
-                        alert(xhr.responseText);
+            getUserInfo(ssid, (userInfo) => {
+                if (userInfo != null) {
+                    document.getElementById("record").style.display="block";
+                    document.getElementById("logOut").style.display="block";
+                    // var data = JSON.parse(userInfo);
+                    // var username = userInfo['username']
+                    // var favoritelist = data['favoritelist']
+                    // for (var i=0; i<favoritelist.length;i++) {
+                        
+                    // }
+                    getCurrentTab((tab) => {
+                        if (tab != null) {
+                            
+                            document.getElementById("title").getAttributeNode("value").value = tab.title;
+                            var record_now = document.getElementById("record_now");
+                            record_now.addEventListener('click', () => {
+                                var xhr = new XMLHttpRequest();
+                                //xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.
+                                //ssid(登陆后)/收藏夹ID/URL/
+                                var title = document.getElementById("title").value;
+                                console.log(title)
+                                xhr.open("POST", "http://127.0.0.1:5000/add?a="+tab.url+"&b="+ssid+"&c="+title, true);
+                                xhr.onreadystatechange = function() {
+                                    if (xhr.readyState == 4) {
+                                    // 警告! 这样处理有可能被注入恶意脚本!
+                                    alert(xhr.responseText);
+                                    }
+                                }
+                                xhr.send();
+                            });
                         }
-                    }
-                    xhr.send();
+                    });
+                var record_auto = document.getElementById("record_auto");
+                record_auto.addEventListener('click', () => {
+                    
                 });
-            });
-            var record_auto = document.getElementById("record_auto");
-            record_auto.addEventListener('click', () => {
-                
-            });
-            var record_t = document.getElementById("record_t");
-            record_t.addEventListener('click', () => {
-                
+                var logout = document.getElementById("logout");
+                logout.addEventListener('select', () => {
+                    chrome.cookies.remove({"url": "http://127.0.0.1:5000", "name": "ssid"});
+                });
+            }
             });
     } else {
         // ssid不存在 需要登录
@@ -87,7 +116,18 @@ document.addEventListener('DOMContentLoaded', () => {
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.responseText != null) {
                     // 登陆成功 在cookies中设置ssid
-                    chrome.cookies.set({"url": "http://127.0.0.1:5000", "name": "ssid", "value": xhr.responseText});
+                    var time = new Date();
+                    var expires = time.getTime()+30*24*3600;//缓存30天
+                    var url = "http://127.0.0.1:5000";
+                    var name = "ssid";
+                    var value = xhr.responseText;
+                    var cookie={
+                        'url':url,
+                        'name':name,
+                        'value':value,
+                        'expirationDate':expires
+                    }
+                    chrome.cookies.set(cookie);
                     document.getElementById("logIn").style.display="none";
                     document.getElementById("record").style.display="block";
                     document.getElementById("logOut").style.display="block";

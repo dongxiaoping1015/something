@@ -4,22 +4,31 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>GTmetrix Analyzer</title>
+    <style>
+        ul,li {margin:0;padding:0;} 
+        li {list-style-type:none;}
+    </style>
   </head>
   <body>
     <div id="logIn" style="display:none;">
-      用户名:<input type="text" id="username" />
-      密码:<input type="text" id="password" />
+      <label for="username">用户名:</label><input type="text" id="username" />
+      <label for="password">密码:</label><input type="password" id="password" />
       <button id="login">log in</button>
     </div>
-    <div id="record" style="display:none;">
-      <h1>GTmetrix Analyzer</h1>
-      <button id="record_now">记录当前页</button>
-      <button id="record_auto">自动记录</button>
-      <button id="record_t">aaaaa</button>
-    </div>
     <div id="logOut" style="display:none;">
-      <button id="logout">log out</button>
+      <a id="logout" style="float:right" href="javascript:;">log out</a>
     </div>
+    <div id="record" style="display:none;">
+      <input type="text" id="title" value=""/>
+      <div>
+          <input type="radio" name="收藏夹" value="1" checked>默认
+          <br>
+          <input type="radio" name="收藏夹" value="2">技术相关
+      </div>
+      <button id="record_now">记录当前页</button><br>
+      <input type="checkbox" id="record_auto">自动记录同一域名网页
+    </div>
+    
   </body>
   <script src="popup.js"></script>
 </html>
